@@ -2,7 +2,7 @@
 ;LJMP MAIN 
 ;ORG 0023H ; serial port interrupt entry 
 ;LJMP SPISR
-ORG 3000H
+;ORG 3000H
 ;MAIN:  MOV DPTR,#09000H
 ;	  MOV TMOD,#20H 
 ;      MOV TH1, #-3
@@ -10,10 +10,11 @@ ORG 3000H
 ;      MOV SCON, #50H   
 ;      MOV IE, 90H 
 ;HERE: SJMP HERE
+ORG 3000H
 		MOV DPTR,#4000H
 MAIN: 	
 
-		LCALL 1A14H
+		LCALL 1A14H      ;for geting data onto accumulator from RS 232 port
 		MOVX @DPTR,A
 		MOV R0,#020
 LOOP:   INC DPTR
